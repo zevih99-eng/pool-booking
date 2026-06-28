@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-pool-50 text-pool-950 antialiased;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(1200px 500px at 50% -10%, #d4f5ff 0%, rgba(212, 245, 255, 0) 60%),
+      linear-gradient(180deg, #eefcff 0%, #d4f5ff 100%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-bold transition active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-pool-500 text-white shadow-card hover:bg-pool-600;
+  }
+  .btn-ghost {
+    @apply btn bg-white/70 text-pool-800 ring-1 ring-pool-200 hover:bg-white;
+  }
+  .card {
+    @apply rounded-3xl bg-white/85 p-5 shadow-card ring-1 ring-pool-100 backdrop-blur sm:p-6;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-bold text-pool-800;
+  }
+  .field-input {
+    @apply w-full rounded-xl border-0 bg-pool-50 px-4 py-3 text-pool-950 ring-1 ring-pool-200 placeholder:text-pool-400 focus:outline-none focus:ring-2 focus:ring-pool-400;
+  }
+}
