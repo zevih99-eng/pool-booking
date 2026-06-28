@@ -37,7 +37,7 @@ export default function SignIn() {
     e.preventDefault()
     const token = code.trim()
     if (token.length < 6) {
-      setError('Please enter the 6-digit code from your email.')
+      setError('Please enter the full code from your email.')
       return
     }
     setLoading(true)
@@ -92,13 +92,13 @@ export default function SignIn() {
                 {loading ? 'Sending…' : 'Email me a sign-in code'}
               </button>
               <p className="t-caption mt-2 text-center">
-                No password needed. We'll email you a 6-digit code to sign in.
+                No password needed. We'll email you a code to sign in.
               </p>
             </form>
           ) : (
             <form onSubmit={verifyCode} className="mx-auto mt-10 flex w-full max-w-[360px] flex-col gap-3 text-left">
               <p className="text-center text-[15px] text-ink80">
-                Enter the 6-digit code we emailed to{' '}
+                Enter the code we emailed to{' '}
                 <span className="font-semibold text-ink">{cleanEmail}</span>.
               </p>
               <input
@@ -106,10 +106,10 @@ export default function SignIn() {
                 type="text"
                 inputMode="numeric"
                 autoComplete="one-time-code"
-                maxLength={6}
-                aria-label="6-digit code"
-                className="field-input rounded-pill px-5 text-center text-[24px] font-semibold tracking-[0.4em]"
-                placeholder="------"
+                maxLength={8}
+                aria-label="Sign-in code"
+                className="field-input rounded-pill px-5 text-center text-[22px] font-semibold tracking-[0.3em]"
+                placeholder="Enter code"
                 value={code}
                 onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
               />
