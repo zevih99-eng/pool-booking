@@ -7,12 +7,12 @@ export default function CalendarButtons({ booking }) {
         href={googleCalendarUrl(booking)}
         target="_blank"
         rel="noreferrer"
-        className="btn-ghost px-3 py-2 text-sm"
+        className="btn-quiet"
       >
-        📅 Google Calendar
+        Add to Google Calendar
       </a>
-      <button onClick={() => downloadICS(booking)} className="btn-ghost px-3 py-2 text-sm">
-        🍎 Apple / Outlook
+      <button onClick={() => downloadICS(booking)} className="btn-quiet">
+        Apple / Outlook
       </button>
     </div>
   )

@@ -5,6 +5,7 @@ import Header from './components/Header'
 import BookingForm from './components/BookingForm'
 import MyRequests from './components/MyRequests'
 import OwnerDashboard from './components/OwnerDashboard'
+import { RESORT_ADDRESS } from './lib/brand'
 
 export default function App() {
   const [session, setSession] = useState(null)
@@ -47,8 +48,8 @@ export default function App() {
 
   if (!authReady) {
     return (
-      <div className="grid min-h-screen place-items-center text-pool-500">
-        <div className="animate-wave text-5xl">🏊</div>
+      <div className="grid min-h-screen place-items-center bg-canvas text-ink48">
+        <div className="text-[14px]">Loading…</div>
       </div>
     )
   }
@@ -56,11 +57,11 @@ export default function App() {
   if (!session) return <SignIn />
 
   return (
-    <div className="min-h-screen pb-16">
+    <div className="flex min-h-screen flex-col">
       <Header user={user} isOwner={isOwner} />
-      <main className="mx-auto max-w-3xl space-y-5 px-4 py-6 sm:px-6">
+      <main className="mx-auto w-full max-w-2xl flex-1 space-y-5 px-5 py-7 sm:px-6">
         {loadingData ? (
-          <div className="card text-center text-pool-600">Loading…</div>
+          <div className="card text-center text-ink48">Loading…</div>
         ) : isOwner ? (
           <OwnerDashboard bookings={bookings} onChange={loadData} />
         ) : (
@@ -70,6 +71,9 @@ export default function App() {
           </>
         )}
       </main>
+      <footer className="border-t border-hairline px-6 py-6 text-center">
+        <p className="t-caption">{RESORT_ADDRESS}</p>
+      </footer>
     </div>
   )
 }

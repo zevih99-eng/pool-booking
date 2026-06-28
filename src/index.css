@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,32 +9,86 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-pool-50 text-pool-950 antialiased;
+    @apply bg-parchment text-ink antialiased;
+    font-size: 17px;
+    line-height: 1.47;
+    letter-spacing: -0.01em;
+    font-feature-settings: 'ss03';
     min-height: 100vh;
-    background-image:
-      radial-gradient(1200px 500px at 50% -10%, #d4f5ff 0%, rgba(212, 245, 255, 0) 60%),
-      linear-gradient(180deg, #eefcff 0%, #d4f5ff 100%);
-    background-attachment: fixed;
+  }
+  h1, h2, h3 {
+    @apply font-semibold text-ink;
+    letter-spacing: -0.022em;
   }
 }
 
 @layer components {
+  /* Typography helpers — Apple "tight" headline cadence */
+  .t-hero {
+    @apply font-semibold text-ink;
+    font-size: 40px;
+    line-height: 1.07;
+    letter-spacing: -0.025em;
+  }
+  @screen sm {
+    .t-hero { font-size: 56px; }
+  }
+  .t-display {
+    @apply font-semibold text-ink;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  @screen sm {
+    .t-display { font-size: 34px; }
+  }
+  .t-lead {
+    @apply font-normal text-ink80;
+    font-size: 19px;
+    line-height: 1.32;
+    letter-spacing: 0;
+  }
+  @screen sm {
+    .t-lead { font-size: 21px; }
+  }
+  .t-caption {
+    @apply text-ink48;
+    font-size: 14px;
+    letter-spacing: -0.012em;
+  }
+
+  /* Buttons */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-bold transition active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 font-normal transition-transform duration-100 active:scale-[0.96] disabled:opacity-40 disabled:cursor-not-allowed;
   }
   .btn-primary {
-    @apply btn bg-pool-500 text-white shadow-card hover:bg-pool-600;
+    @apply btn rounded-pill bg-accent px-6 py-3 text-white;
   }
-  .btn-ghost {
-    @apply btn bg-white/70 text-pool-800 ring-1 ring-pool-200 hover:bg-white;
+  .btn-secondary {
+    @apply btn rounded-pill border border-accent bg-transparent px-6 py-3 text-accent;
   }
+  .btn-dark {
+    @apply btn rounded-sm bg-ink px-4 py-2 text-[14px] text-white;
+  }
+  .btn-quiet {
+    @apply btn rounded-pill bg-pearl px-4 py-2 text-[14px] text-ink80 ring-1 ring-divider-soft;
+  }
+
+  /* Surfaces */
   .card {
-    @apply rounded-3xl bg-white/85 p-5 shadow-card ring-1 ring-pool-100 backdrop-blur sm:p-6;
+    @apply rounded-lg border border-hairline bg-canvas p-6;
   }
+
+  /* Inline link */
+  .link {
+    @apply font-normal text-accent hover:underline;
+  }
+
+  /* Form fields */
   .field-label {
-    @apply mb-1.5 block text-sm font-bold text-pool-800;
+    @apply mb-2 block text-[14px] font-semibold text-ink;
   }
   .field-input {
-    @apply w-full rounded-xl border-0 bg-pool-50 px-4 py-3 text-pool-950 ring-1 ring-pool-200 placeholder:text-pool-400 focus:outline-none focus:ring-2 focus:ring-pool-400;
+    @apply w-full rounded-sm border border-hairline bg-canvas px-4 py-3 text-[17px] text-ink placeholder:text-ink48 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-focus/30;
   }
 }

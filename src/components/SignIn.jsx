@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
-import Logo from './Logo'
+import { RESORT_NAME, RESORT_ADDRESS } from '../lib/brand'
 
 export default function SignIn() {
   const [email, setEmail] = useState('')
@@ -30,60 +30,62 @@ export default function SignIn() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-5 py-10">
-      <div className="w-full max-w-md">
-        <div className="mb-8 flex flex-col items-center text-center">
-          <div className="mb-5 animate-wave text-6xl">🏊</div>
-          <Logo className="mb-6" />
-          <h1 className="text-3xl font-extrabold text-pool-900">Ask to use the pool</h1>
-          <p className="mt-3 text-pool-700">
-            Sign in to send a request for a swim. Pick your time, tell us who's coming,
-            and we'll get back to you.
+    <div className="flex min-h-screen flex-col bg-canvas">
+      <div className="flex flex-1 flex-col items-center justify-center px-6 py-16">
+        <div className="w-full max-w-[440px] text-center">
+          <p className="mb-4 text-[14px] font-semibold uppercase tracking-[0.04em] text-accent">
+            Members only
           </p>
-        </div>
+          <h1 className="t-hero">{RESORT_NAME}</h1>
+          <p className="t-lead mx-auto mt-5 max-w-[400px]">
+            Request a time for a swim. Pick your hours, tell us who's coming,
+            and we'll confirm your spot.
+          </p>
 
-        {sent ? (
-          <div className="card text-center">
-            <div className="mb-3 text-5xl">📬</div>
-            <h2 className="text-xl font-extrabold text-pool-900">Check your email</h2>
-            <p className="mt-2 text-pool-700">
-              We sent a sign-in link to <span className="font-bold">{email.trim().toLowerCase()}</span>.
-              Open it on this device to continue.
-            </p>
-            <button
-              onClick={() => { setSent(false); setError('') }}
-              className="mt-5 text-sm font-bold text-pool-600 hover:underline"
-            >
-              Use a different email
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={sendLink} className="card flex flex-col">
-            <label className="field-label" htmlFor="email">Your email</label>
-            <input
-              id="email"
-              type="email"
-              autoComplete="email"
-              inputMode="email"
-              className="field-input"
-              placeholder="you@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {error && (
-              <p className="mt-3 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-600">
-                {error}
+          {sent ? (
+            <div className="card mt-10 text-left">
+              <h2 className="text-[21px] font-semibold">Check your email</h2>
+              <p className="mt-2 text-ink80">
+                We sent a sign-in link to <span className="font-semibold text-ink">{email.trim().toLowerCase()}</span>.
+                Open it on this device to continue.
               </p>
-            )}
-            <button type="submit" disabled={loading} className="btn-primary mt-4 w-full">
-              {loading ? 'Sending…' : 'Email me a sign-in link'}
-            </button>
-            <p className="mt-5 text-center text-xs text-pool-600">
-              No password needed. We only use your email to manage your pool requests.
-            </p>
-          </form>
-        )}
+              <button
+                onClick={() => { setSent(false); setError('') }}
+                className="link mt-4 text-[14px]"
+              >
+                Use a different email
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={sendLink} className="mx-auto mt-10 flex w-full max-w-[360px] flex-col gap-3 text-left">
+              <input
+                id="email"
+                type="email"
+                autoComplete="email"
+                inputMode="email"
+                aria-label="Your email"
+                className="field-input rounded-pill px-5 text-center"
+                placeholder="you@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {error && (
+                <p className="text-center text-[14px] font-medium text-red-600">{error}</p>
+              )}
+              <button type="submit" disabled={loading} className="btn-primary mt-1">
+                {loading ? 'Sending…' : 'Email me a sign-in link'}
+              </button>
+              <p className="t-caption mt-2 text-center">
+                No password needed. We only use your email to manage your pool requests.
+              </p>
+            </form>
+          )}
+        </div>
       </div>
+
+      <footer className="border-t border-hairline px-6 py-6 text-center">
+        <p className="t-caption">{RESORT_ADDRESS}</p>
+      </footer>
     </div>
   )
 }

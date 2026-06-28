@@ -11,41 +11,40 @@ export default function MyRequests({ bookings, onChange }) {
 
   if (!bookings.length) {
     return (
-      <div className="card text-center text-pool-700">
-        <div className="mb-2 text-4xl">🫧</div>
-        <p className="font-bold text-pool-900">No requests yet</p>
-        <p className="mt-1 text-sm">Send your first request above and it'll show up here.</p>
+      <div className="card text-center">
+        <p className="font-semibold text-ink">No requests yet</p>
+        <p className="mt-1 text-[14px] text-ink48">Send your first request above and it'll show up here.</p>
       </div>
     )
   }
 
   return (
     <div className="space-y-3">
-      <h2 className="px-1 text-lg font-extrabold text-pool-900">Your requests</h2>
+      <h2 className="px-1 text-[21px] font-semibold text-ink">Your requests</h2>
       {bookings.map((b) => (
         <div key={b.id} className="card">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="font-extrabold text-pool-900">{formatRange(b.start_at, b.end_at)}</div>
-              <div className="mt-1 text-sm text-pool-700">🏊 {b.swimmers}</div>
+              <div className="font-semibold text-ink">{formatRange(b.start_at, b.end_at)}</div>
+              <div className="mt-1.5 text-[15px] text-ink80">{b.swimmers}</div>
               {b.heat_requested && (
-                <div className="mt-1 text-sm font-semibold text-pool-600">☀️ Heat requested</div>
+                <div className="mt-1 text-[14px] text-ink48">Heat requested</div>
               )}
-              {b.note && <div className="mt-1 text-sm text-pool-600">📝 {b.note}</div>}
+              {b.note && <div className="mt-1 text-[14px] text-ink48">{b.note}</div>}
             </div>
             <StatusBadge status={b.status} />
           </div>
 
           {b.status === 'approved' && (
-            <div className="mt-4 border-t border-pool-100 pt-4">
-              <p className="mb-2 text-sm font-bold text-emerald-700">You're all set — add it to your calendar:</p>
+            <div className="mt-5 border-t border-divider-soft pt-4">
+              <p className="mb-2.5 text-[14px] font-semibold text-ink">You're confirmed — add it to your calendar:</p>
               <CalendarButtons booking={b} />
             </div>
           )}
 
           {b.status === 'pending' && (
-            <div className="mt-4 border-t border-pool-100 pt-4">
-              <button onClick={() => cancel(b.id)} className="text-sm font-bold text-rose-600 hover:underline">
+            <div className="mt-5 border-t border-divider-soft pt-4">
+              <button onClick={() => cancel(b.id)} className="text-[14px] font-medium text-accent hover:underline">
                 Cancel this request
               </button>
             </div>
