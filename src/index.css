@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,88 +7,65 @@
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
   body {
-    @apply bg-parchment text-ink antialiased;
+    @apply bg-canvas text-slate antialiased;
     font-size: 17px;
-    line-height: 1.47;
-    letter-spacing: -0.01em;
-    font-feature-settings: 'ss03';
+    line-height: 1.6;
+    letter-spacing: -0.011em;
     min-height: 100vh;
   }
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-semibold text-ink;
     letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: rgba(31, 95, 168, 0.18);
   }
 }
 
 @layer components {
-  /* Typography helpers — Apple "tight" headline cadence */
-  .t-hero {
-    @apply font-semibold text-ink;
-    font-size: 40px;
-    line-height: 1.07;
-    letter-spacing: -0.025em;
+  .wrap {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8;
   }
-  @screen sm {
-    .t-hero { font-size: 56px; }
+  .eyebrow {
+    @apply text-[13px] font-semibold uppercase tracking-[0.16em] text-glacier;
   }
-  .t-display {
-    @apply font-semibold text-ink;
-    font-size: 28px;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-  @screen sm {
-    .t-display { font-size: 34px; }
-  }
-  .t-lead {
-    @apply font-normal text-ink80;
-    font-size: 19px;
-    line-height: 1.32;
-    letter-spacing: 0;
-  }
-  @screen sm {
-    .t-lead { font-size: 21px; }
-  }
-  .t-caption {
-    @apply text-ink48;
-    font-size: 14px;
-    letter-spacing: -0.012em;
-  }
-
-  /* Buttons */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 font-normal transition-transform duration-100 active:scale-[0.96] disabled:opacity-40 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 rounded-pill px-6 py-3 text-[15px] font-semibold transition-all duration-200;
   }
   .btn-primary {
-    @apply btn rounded-pill bg-accent px-6 py-3 text-white;
+    @apply btn bg-glacier text-white shadow-card hover:bg-navy hover:shadow-lift;
   }
-  .btn-secondary {
-    @apply btn rounded-pill border border-accent bg-transparent px-6 py-3 text-accent;
+  .btn-ghost {
+    @apply btn border border-hairline bg-white text-ink hover:border-glacier hover:text-glacier;
   }
-  .btn-dark {
-    @apply btn rounded-sm bg-ink px-4 py-2 text-[14px] text-white;
+  .btn-light {
+    @apply btn bg-white text-navy hover:bg-frost;
   }
-  .btn-quiet {
-    @apply btn rounded-pill bg-pearl px-4 py-2 text-[14px] text-ink80 ring-1 ring-divider-soft;
-  }
-
-  /* Surfaces */
   .card {
-    @apply rounded-lg border border-hairline bg-canvas p-6;
+    @apply rounded-lg border border-hairline bg-white p-7 shadow-card transition-all duration-200;
   }
+}
 
-  /* Inline link */
-  .link {
-    @apply font-normal text-accent hover:underline;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
-
-  /* Form fields */
-  .field-label {
-    @apply mb-2 block text-[14px] font-semibold text-ink;
+  .fade-up {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  .field-input {
-    @apply w-full rounded-sm border border-hairline bg-canvas px-4 py-3 text-[17px] text-ink placeholder:text-ink48 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-focus/30;
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
