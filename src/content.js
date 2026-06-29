@@ -5,9 +5,11 @@
 
 export const COMPANY = {
   name: 'Iceland Industrial Group',
-  email: 'zevi@icelandindustrialgroup.com',
-  location: 'Brooklyn, New York',
-  address: '1034 East 29th Street, Brooklyn, NY 11210',
+  // PLACEHOLDER — confirm or replace with the business inbox you want public.
+  email: 'info@icelandindustrialgroup.com',
+  location: 'New York, NY',
+  // General region only — no street address shown publicly.
+  address: 'New York, NY',
   tagline: 'Institutional standards for industrial real estate.',
 }
 
