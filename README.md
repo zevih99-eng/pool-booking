@@ -1,16 +1,31 @@
-# React + Vite
+# Iceland Industrial Group — Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Marketing website for **Iceland Industrial Group**, a firm that acquires and
+operates income-producing industrial real estate with a focus on long-term
+value, strategic location, and institutional-grade management.
 
-Currently, two official plugins are available:
+## Tech
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [React](https://react.dev) + [Vite](https://vite.dev)
+- [Tailwind CSS](https://tailwindcss.com)
+- Deployed on [Netlify](https://www.netlify.com) (config in `netlify.toml`)
 
-## React Compiler
+## Editing the content
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+All page copy lives in **`src/content.js`** — headlines, the approach pillars,
+investment focus, leadership bios, and contact details. Edit that one file to
+update most of the site without touching layout code.
 
-## Expanding the Oxlint configuration
+## Local development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm install     # install dependencies
+npm run dev     # start a local preview at http://localhost:5173
+npm run build   # produce the production build in dist/
+npm run lint    # run the linter
+```
+
+## How it goes live
+
+Netlify is connected to this repository. Every push rebuilds and republishes
+the site automatically — no servers to manage.
